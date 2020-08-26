@@ -11,24 +11,26 @@ import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_pair_memory_game.*
 
 class PairMemoryGame : AppCompatActivity() {
-    val pairsNumber : Int = 6
-    var first : Int = 0
-    var second : Int = 0
-    var firstIV : Int = 0
+    val pairsNumber : Int = 6 // six pairs of images
+    var first : Int = 0 // first image selected
+    var second : Int = 0 // second image selected
+    var firstIV : Int = 0 // aux val
     var score: Int = 0
-    var streak: Int = 1
+    var streak: Int = 1 // streak of good guesses
 
+    // arrays with the 6 images
     val waifusArray = arrayOf(R.drawable.w11, R.drawable.w21, R.drawable.w31, R.drawable.w41, R.drawable.w51, R.drawable.w61)
 
-    var tuples = arrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
-    var completed = arrayOf(0, 0, 0, 0, 0, 0)
-    var completedIndex = 0
+    var tuples = arrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12) // array to save the images
+    var completed = arrayOf(0, 0, 0, 0, 0, 0) // // array to save the pairs guessed
+    var completedIndex = 0 // number to control the compteted array
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pair_memory_game)
-        setWaifus()
+        setWaifus() // set the images at the start
 
+        // get the value from the parent
         val objectIntent : Intent = intent
         score = objectIntent.getIntExtra("score", 1)
 
@@ -36,6 +38,7 @@ class PairMemoryGame : AppCompatActivity() {
         tvScore.text = score.toString()
     }
 
+    // function when you go back with the button of the phone and pass the score
     override fun onBackPressed() {
         val goBack : Intent = Intent(this,MainActivity::class.java)
         goBack.putExtra("score", score)
@@ -44,44 +47,49 @@ class PairMemoryGame : AppCompatActivity() {
         super.onBackPressed()
     }
 
+    // function when you go back with the button in the appbar
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
     }
 
+    // set the images random in the board
     fun setWaifus() {
-        var temp = arrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12).toList()
+        var temp = arrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12).toList() // array for every position
 
         for (i in 1..pairsNumber) {
-            var algo = temp.random().toInt()
-            temp = temp.filter { it != algo }
+            var algo = temp.random().toInt() // get a random position
+            temp = temp.filter { it != algo } // delete a occupied position
 
-            tuples[algo-1] = i
+            tuples[algo-1] = i // save the images in its position
 
             algo = temp.random().toInt()
-            temp = temp.filter { it != algo }
+            temp = temp.filter { it != algo } // delete a occupied position
 
-            tuples[algo-1] = i
+            // two times for every pair (obviously)
+
+            tuples[algo-1] = i // save the images in its position
         }
     }
 
+    // function that triggers when you select a picture
     fun power(i: Int, iv: ImageView) {
-        if (!completed.contains(tuples[i]) && second == 0) {
+        if (!completed.contains(tuples[i]) && second == 0) { // verify if there's a images displayed here and
             iv.setImageResource(waifusArray[tuples[i]-1])
 
-            if (first != 0) {
-                second = tuples[i]
+            if (first != 0) { // verify if you already pick one
+                second = tuples[i] // set the image for the second choice
 
-                if (first == second) {
-                    completed.set(completedIndex, tuples[i])
+                if (first == second) { // verify if the images match
+                    completed.set(completedIndex, tuples[i]) // add the image to the completed array
                     completedIndex++
-                    score += 100*streak
-                    streak++
-                } else {
+                    score += 100*streak // score up!
+                    streak++ // streak up!
+                } else { // if the images don't match
                     GlobalScope.launch(context = Dispatchers.Main) {
                         delay(2000)
-                        // code here
-                        when(firstIV) {
+                        // delay 2 seconds
+                        when(firstIV) { // set the first choice to default
                             1 -> iv1.setImageResource(R.drawable.question)
                             2 -> iv2.setImageResource(R.drawable.question)
                             3 -> iv3.setImageResource(R.drawable.question)
@@ -95,22 +103,23 @@ class PairMemoryGame : AppCompatActivity() {
                             11 -> iv11.setImageResource(R.drawable.question)
                             12 -> iv12.setImageResource(R.drawable.question)
                         }
-                        iv.setImageResource(R.drawable.question)
+                        iv.setImageResource(R.drawable.question) // set the current/second choice to default
                     }
-                    streak = 1
+                    streak = 1 // reset the streak
                 }
 
                 val tvScore : TextView = findViewById(R.id.tvScore)
-                tvScore.text = score.toString()
-                first = 0
-                second = 0
+                tvScore.text = score.toString() // show the new score
+                first = 0 // reset the two choices
+                second = 0 // reset the two choices
             } else {
-                first = tuples[i]
-                firstIV = i+1
+                first = tuples[i] // set the first choice
+                firstIV = i+1 // save the number of the imageview for the first choice
             }
         }
     }
 
+    // show the pic in every position
     fun showPic1(view: View) {
         power(0, iv1)
     }
@@ -159,6 +168,7 @@ class PairMemoryGame : AppCompatActivity() {
         power(11, iv12)
     }
 
+    // reset every value
     fun reset(view: View) {
         iv1.setImageResource(R.drawable.question)
         iv2.setImageResource(R.drawable.question)
@@ -176,7 +186,5 @@ class PairMemoryGame : AppCompatActivity() {
         completed = arrayOf(0, 0, 0, 0, 0, 0)
         completedIndex = 0
         streak = 1
-        val tvScore : TextView = findViewById(R.id.tvScore)
-        tvScore.text = score.toString()
     }
 }

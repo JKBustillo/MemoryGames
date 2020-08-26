@@ -12,17 +12,17 @@ import kotlinx.android.synthetic.main.activity_memory_game.*
 import kotlinx.android.synthetic.main.activity_pair_memory_game.*
 
 class MemoryGame : AppCompatActivity() {
-    var isStarted : Boolean = false
-    var n : Int = 2
-    var selected = arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-    var selectedRightArray = arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-    var selectedRight = 0
+    var isStarted : Boolean = false // if the game is started
+    var n : Int = 2 // start with two squares to guess
+    var selected = arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) // save the position to guess every turn
+    var selectedRight = 0 // save the numbers of positions guessed right - max n
     var score: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_memory_game)
 
+        // get the value from the parent
         val objectIntent : Intent = intent
         score = objectIntent.getIntExtra("score", 1)
 
@@ -30,6 +30,7 @@ class MemoryGame : AppCompatActivity() {
         tvScore.text = score.toString()
     }
 
+    // function when you go back with the button of the phone and pass the score
     override fun onBackPressed() {
         val goBack : Intent = Intent(this,MainActivity::class.java)
         goBack.putExtra("score", score)
@@ -38,18 +39,22 @@ class MemoryGame : AppCompatActivity() {
         super.onBackPressed()
     }
 
+    // function when you go back with the button in the appbar
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
     }
 
+    // set the n blocks every turn
     fun setBlocks(n: Int) {
-        var temp = arrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25).toList()
+        var temp = arrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25).toList() // array for the position of the blocks
 
+        // set the n blocks
         for (i in 1..n) {
-            var algo = temp.random().toInt()
-            temp = temp.filter { it != algo }
+            var algo = temp.random().toInt() // select a random position
+            temp = temp.filter { it != algo } // delete the selected position
 
+            // set yellow for two seconds the selected blocks
             when (algo) {
                 1 -> ivm1.setImageResource(R.drawable.yellow)
                 2 -> ivm2.setImageResource(R.drawable.yellow)
@@ -78,6 +83,7 @@ class MemoryGame : AppCompatActivity() {
                 25 -> ivm25.setImageResource(R.drawable.yellow)
             }
 
+            // delay of two seconds and set back to gray the blocks
             GlobalScope.launch(context = Dispatchers.Main) {
                 delay((n*500).toLong())
                 when (algo) {
@@ -108,19 +114,20 @@ class MemoryGame : AppCompatActivity() {
                     25 -> ivm25.setImageResource(R.drawable.grey)
                 }
             }
-            selected[i] = algo
+            selected[i] = algo // save the selected position
         }
     }
 
+    // main function when you select a block
     fun power(i: Int, iv: ImageView) {
-        if (selected.contains(i+1)) {
-            selectedRightArray[selectedRight] = i
-            selectedRight++
-            iv.setImageResource(R.drawable.green)
-            if (selectedRight == n && n < 25) {
-                score = score + 100*n
+        if (selected.contains(i+1)) { // if the block that you select is store in the array of positions selected
+            selectedRight++ // save the number of positions guessed right - max n
+            iv.setImageResource(R.drawable.green) // set the position green
+            if (selectedRight == n && n < 25) { // if select every position right
+                score = score + 100*n // score up 100 per block
                 val tvScore : TextView = findViewById(R.id.tvScore)
-                tvScore.text = score.toString()
+                tvScore.text = score.toString() // show the new score
+                // set every position grey after two seconds
                 GlobalScope.launch(context = Dispatchers.Main) {
                     delay(2000)
                     ivm1.setImageResource(R.drawable.grey)
@@ -151,15 +158,15 @@ class MemoryGame : AppCompatActivity() {
                 }
                 GlobalScope.launch(context = Dispatchers.Main) {
                     delay(2000)
-                    n++
-                    selectedRight = 0
-                    selected = arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-                    setBlocks(n)
-                    selectedRightArray = arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+                    n++ // add one to the new number of block to guess
+                    selectedRight = 0 // reset
+                    selected = arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) // reset
+                    setBlocks(n) // set the new number of blocks
                 }
             }
         } else {
-            iv.setImageResource(R.drawable.red)
+            iv.setImageResource(R.drawable.red) // set the position red if you guess wrong
+            // set every position grey after two seconds
             GlobalScope.launch(context = Dispatchers.Main) {
                 delay((2000).toLong())
                 ivm1.setImageResource(R.drawable.grey)
@@ -188,15 +195,16 @@ class MemoryGame : AppCompatActivity() {
                 ivm24.setImageResource(R.drawable.grey)
                 ivm25.setImageResource(R.drawable.grey)
             }
+            // reset every value
             startiv.setImageResource(R.drawable.start)
             n = 2
             selected = arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-            selectedRightArray = arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
             selectedRight = 0
             isStarted = !isStarted
         }
     }
 
+    // show if you guess right or not
     fun showPicM1(view: View) {
         power(0, ivm1)
     }
@@ -297,6 +305,7 @@ class MemoryGame : AppCompatActivity() {
         power(24, ivm25)
     }
 
+    // reset and start func
     fun reset(view: View) {
         if (isStarted) {
             ivm1.setImageResource(R.drawable.grey)
@@ -327,7 +336,6 @@ class MemoryGame : AppCompatActivity() {
             startiv.setImageResource(R.drawable.start)
             n = 2
             selected = arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-            selectedRightArray = arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
             selectedRight = 0
         } else {
             startiv.setImageResource(R.drawable.restart)

@@ -34,13 +34,13 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/startiv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="18dp"
             android:layout_weight="1"
             android:onClick="reset"
-            app:srcCompat="@drawable/restart" />
+            app:srcCompat="@drawable/start" />
 
     </LinearLayout>
 
@@ -55,46 +55,51 @@
             android:id="@+id/ivm1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
-            android:onClick="showPicM1"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            android:onClick="showPicM1"
+            app:srcCompat="@drawable/grey" />
 
         <ImageView
             android:id="@+id/ivm2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM2"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
 
         <ImageView
             android:id="@+id/ivm3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM3"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
 
         <ImageView
             android:id="@+id/ivm4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM4"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
 
         <ImageView
             android:id="@+id/ivm5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM5"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
     </LinearLayout>
 
     <LinearLayout
@@ -108,46 +113,51 @@
             android:id="@+id/ivm6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM6"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
 
         <ImageView
             android:id="@+id/ivm7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM7"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
 
         <ImageView
             android:id="@+id/ivm8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM8"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
 
         <ImageView
             android:id="@+id/ivm9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM9"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
 
         <ImageView
             android:id="@+id/ivm10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM10"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
     </LinearLayout>
 
     <LinearLayout
@@ -161,46 +171,51 @@
             android:id="@+id/ivm11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM11"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
 
         <ImageView
             android:id="@+id/ivm12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM12"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
 
         <ImageView
             android:id="@+id/ivm13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM13"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
 
         <ImageView
             android:id="@+id/ivm14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM14"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
 
         <ImageView
             android:id="@+id/ivm15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM15"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
 
     </LinearLayout>
 
@@ -215,46 +230,51 @@
             android:id="@+id/ivm16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM16"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
 
         <ImageView
             android:id="@+id/ivm17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM17"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
 
         <ImageView
             android:id="@+id/ivm18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM18"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
 
         <ImageView
             android:id="@+id/ivm19"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM19"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
 
         <ImageView
             android:id="@+id/ivm20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM20"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
     </LinearLayout>
 
     <LinearLayout
@@ -268,46 +288,51 @@
             android:id="@+id/ivm21"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM21"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
 
         <ImageView
             android:id="@+id/ivm22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM22"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
 
         <ImageView
             android:id="@+id/ivm23"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM23"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
 
         <ImageView
             android:id="@+id/ivm24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM24"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
 
         <ImageView
             android:id="@+id/ivm25"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="2dp"
             android:layout_weight="1"
             android:onClick="showPicM25"
             android:contentDescription="@string/question"
-            app:srcCompat="@drawable/question" />
+            app:srcCompat="@drawable/grey" />
 
     </LinearLayout>
 </LinearLayout>

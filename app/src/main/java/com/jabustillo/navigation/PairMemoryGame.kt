@@ -1,5 +1,7 @@
 package com.jabustillo.navigation
 
+import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.coroutines.*
@@ -26,6 +28,25 @@ class PairMemoryGame : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pair_memory_game)
         setWaifus()
+
+        val objectIntent : Intent = intent
+        score = objectIntent.getIntExtra("score", 1)
+
+        val tvScore : TextView = findViewById(R.id.tvScore)
+        tvScore.text = score.toString()
+    }
+
+    override fun onBackPressed() {
+        val goBack : Intent = Intent(this,MainActivity::class.java)
+        goBack.putExtra("score", score)
+        setResult(Activity.RESULT_OK, goBack)
+        println(0)
+        super.onBackPressed()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     fun setWaifus() {
@@ -154,7 +175,6 @@ class PairMemoryGame : AppCompatActivity() {
         setWaifus()
         completed = arrayOf(0, 0, 0, 0, 0, 0)
         completedIndex = 0
-        score = 0
         streak = 1
         val tvScore : TextView = findViewById(R.id.tvScore)
         tvScore.text = score.toString()
